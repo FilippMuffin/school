@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
+
 class SubjectType extends AbstractType
 {
     /**
@@ -20,7 +22,10 @@ class SubjectType extends AbstractType
             ->add('countHours', null, ['label' => 'Количество часов: '])
             ->add('students', null, ['label' => 'Студент: '])
             ->add('lecturers', null, ['label' => ' Лектор: '])
-            ->add('lectures')
+            ->add('lectures',  CollectionType::class, array(
+                'entry_type' => LectureType::class,
+                'entry_options' => array('label' => false),
+            ))
         ;
     }
     
